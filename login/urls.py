@@ -3,5 +3,5 @@ from login.views import *
 from app.views import *
 
 urlpatterns = [
-    path("inicio/", login,  name="login-inicio")
+    path("inicio/", iniciar_sesion,  name="login-inicio")
 ]
