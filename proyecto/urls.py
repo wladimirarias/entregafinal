@@ -18,6 +18,8 @@ from django.urls import path
 
 #prueba
 
+#prueba Wladimir
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
