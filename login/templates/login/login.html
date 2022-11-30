@@ -9,12 +9,18 @@
     <div class="card-body">
         <h3 class="card-title text-center">Login</h3>
         <div class="card-text">
-            <!--
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
-            <form method="post">
+            <form method="post" class="card-title text-center">
                 {% csrf_token %}
-                <!-- to error: add class "has-danger" -->
-                {{ form.as_p }}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Usuario: </label>
+                    <div id="exampleInputPassword1"> {{ form.username }} </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Contraseña: </label>
+                    <div id="exampleInputPassword1"> {{ form.password }} </div>
+                </div>
+            
                 <input type="submit" class="btn btn-primary btn-block" value="Iniciar Sesión">
                 
                 <div class="sign-up">

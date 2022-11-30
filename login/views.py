@@ -4,7 +4,7 @@ from django.http import Http404
 
 # Imports Login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
 # Función para Inicio de Sesión
 def iniciar_sesion(request):
@@ -24,8 +24,11 @@ def iniciar_sesion(request):
             else:
                 return render(request, "login/login.html", {"form": formulario, "errors": "Credenciales Inválidas"})
         else:
-            return render("login/login.html", {"form": formulario, "errors": errors})
+            return redirect("auth-login")
     
     formulario = AuthenticationForm()
     return render(request, "login/login.html", {"form": formulario, "errors": errors})
-    
+
+def cerrar_sesion(request):
+    logout(request)
+    return redirect("auth-login")
