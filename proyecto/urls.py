@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import proyecto.settings as settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('app/', include("app.urls")),
     path('login/', include("login.urls"))
 ]
+
+#URLS de archivos estáticos
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

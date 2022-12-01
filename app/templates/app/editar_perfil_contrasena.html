@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %} {% block contenido %} {% if errors %}
+<p style="color: red;">{{ errors }}</p>
+{% endif %}
+
+<form method="post">{% csrf_token %}
+    <div class="form-group">
+        <label for="exampleInputEmail1">Contraseña: </label>
+        <div id="exampleInputPassword1"> {{ form.password1 }} </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Confirmar Contraseña: </label>
+        <div id="exampleInputPassword1"> {{ form.password2 }} </div>
+    </div>
+    <!-- {{ form.as_p }} -->
+    <br>
+    <input type="submit" value="Guardar">
+</form>
+
+
+{% endblock %}
