@@ -20,7 +20,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Start Bootstrap</a>
+            <a class="navbar-brand" href="{% url 'app-inicio' %}">Start Bootstrap</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -40,9 +40,10 @@
                 </ul>
 
                 {% if request.user.is_authenticated %}
+                <img src="{{ imagen_url }}" style="max-width: 55px;">
                 <ul class="navbar-nav  mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item dropdown">
-                        <a class="btn btn-outline-dark " id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill me-1"></i> {{ request.user.username.capitalize }}</a>
+                        <a class="btn btn-outline-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill me-1"></i> {{ request.user.username.capitalize }}</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'auth-editar-perfil' %}">Editar Perfil</a></li>
                             <li><a class="dropdown-item" href="{% url 'auth-editar-contrasena' %}">Cambiar Contraseña</a></li>

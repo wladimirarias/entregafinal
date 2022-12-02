@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from login.models import Avatar
-from login.forms import UserEditForm, UserEditFormPass, AvatarForm
+from login.forms import UserEditForm, UserEditFormPass, AvatarForm, UserRegisterForm
 from django.http import HttpResponse
 from django.http import Http404
 
@@ -94,3 +94,10 @@ def agregar_avatar(request):
     formulario = AvatarForm()
 
     return render(request, "app/agregar_avatar.html", {"form": formulario})
+
+def registrar_usuario(request):
+
+    if request.method == 'POST':
+        formulario = UserCreationForm(request.POST)
+
+        pass
