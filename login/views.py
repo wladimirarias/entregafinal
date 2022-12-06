@@ -100,4 +100,12 @@ def registrar_usuario(request):
     if request.method == 'POST':
         formulario = UserCreationForm(request.POST)
 
-        pass
+        if formulario.is_valid():
+
+            formulario.save()
+            return redirect("auth-login")
+        else:
+            return render(request, "login/registro.html", {"form": formulario, "errors": formulario.errors})
+    
+    formulario = UserRegisterForm()
+    return render(request, "login/registro.html", {"form": formulario})

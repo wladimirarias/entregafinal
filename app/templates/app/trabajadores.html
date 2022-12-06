@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %} {% block contenido %}
+
+<h1>Trabajadores</h1>
+<h4 style="color: blue;">Estos son los trabajadores ingresados en el sistema</h4>
+
+{% if errores %}
+<p style="color: red;">{{ errores }}</p>
+{% endif %} {% if listado_trabajadores %}
+<table cellspacing="10" cellpadding="10" border="2">
+    <thead>
+        <tr>
+            <th>Run</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Detalle Trabajador</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for trabajador in listado_trabajadores %}
+        <tr>
+            <td>{{ trabajador.run }}</td>
+            <td>{{ trabajador.nombre }}</td>
+            <td>{{ trabajador.apellido }}</td>
+            <td>{{ trabajador.email }}</td>
+            <td><a href="#">Ver Detalle</a></td>
+            <td><a href="#">Editar</a> | <a href="#">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% else %}
+<p>No hay trabajadores ingresados en el sistema</p>
+{% endif %} {% endblock %}

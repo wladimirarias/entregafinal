@@ -1,34 +1,32 @@
-{% extends 'login/base_login.html' %}
-{% block contenido_login %}
-{% if errors %}
+{% extends 'login/base_login.html' %} {% block contenido_login %} {% if errors %}
 <p style="color: red;">Errores detectados: {{ errors }}</p>
 {% endif %}
 
 <div class="global-container">
     <div class="card login-form">
-    <div class="card-body">
-        <h3 class="card-title text-center">Login</h3>
-        <div class="card-text">
-            <form method="post" class="card-title text-center">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Usuario: </label>
-                    <div id="exampleInputPassword1"> {{ form.username }} </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Contraseña: </label>
-                    <div id="exampleInputPassword1"> {{ form.password }} </div>
-                </div>
-            
-                <input type="submit" class="btn btn-primary btn-block" value="Iniciar Sesión">
-                
-                <div class="sign-up">
-                    ¿No tienes cuenta? <a href="#">Crea Una</a>
-                </div>
-            </form>
+        <div class="card-body">
+            <h3 class="card-title text-center">Login</h3>
+            <div class="card-text">
+                <form method="post" class="card-title text-center">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Usuario: </label>
+                        <div id="exampleInputPassword1"> {{ form.username }} </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Contraseña: </label>
+                        <div id="exampleInputPassword1"> {{ form.password }} </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary btn-block" value="Iniciar Sesión">
+
+                    <div class="sign-up">
+                        ¿No tienes cuenta? <a href="{% url 'auth-register' %}">Crea Una</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
