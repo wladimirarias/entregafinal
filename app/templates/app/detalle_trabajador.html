@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %} {% block contenido %}
+
+<h4>Detalle Trabajador <img src="{{ imagen_url }}" style="max-width: 100px;"> </h4>
+
+<table>
+    <tr>
+        <td>
+            Run: {{ trabajador.run }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Nombre: {{ trabajador.nombre }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Apellido: {{ trabajador.apellido }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Edad: {{ trabajador.edad }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Email: {{ trabajador.email }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Cargo: {{ trabajador.cargo }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Creador Por: {{ trabajador.user_id }}
+        </td>
+    </tr>
+
+
+
+
+</table>
+
+
+{% endblock %}

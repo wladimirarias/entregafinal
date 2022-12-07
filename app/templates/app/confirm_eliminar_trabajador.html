@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %} {% block contenido %}
+
+<table>
+    <tr>
+        <td>
+            <p>¿Está seguro que desea eliminar a {{ trabajador.nombre }} {{ trabajador.apellido }}?</p>
+            <a class="btn btn-primary" href="{% url 'app-eliminar-trabajador' trabajador.id %}" role="button">Confirmar</a>
+        </td>
+    </tr>
+
+</table>
+
+
+{% endblock %}

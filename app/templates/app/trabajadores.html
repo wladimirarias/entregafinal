@@ -25,8 +25,8 @@
             <td>{{ trabajador.nombre }}</td>
             <td>{{ trabajador.apellido }}</td>
             <td>{{ trabajador.email }}</td>
-            <td><a href="#">Ver Detalle</a></td>
-            <td><a href="#">Editar</a> | <a href="#">Eliminar</a></td>
+            <td><a href="{% url 'app-detalle-trabajador' trabajador.id %}">Ver Detalle</a></td>
+            <td><a href="{% url 'app-editar-trabajador' trabajador.id %}">Editar</a> | <a href="{% url 'app-confirm-eliminar-trabajador' trabajador.id %}">Eliminar</a></td>
         </tr>
         {% endfor %}
     </tbody>
