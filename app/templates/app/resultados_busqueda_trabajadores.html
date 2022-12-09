@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %} {% block contenido %}
+
+<ul>
+    {% for trabajador in trabajadores %}
+    <li>RUN: {{ trabajador.run }} - Nombre: {{ trabajador.nombre }} {{ trabajador.apellido }} - Edad: {{ trabajador.edad }} | <a href="{% url 'app-detalle-trabajador' trabajador.id %}">Ver Detalle</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

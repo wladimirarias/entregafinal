@@ -127,6 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # URL para el LOGIN
 
+LOGIN_URL = "/login/inicio/"
 
 # Configuraciones MEDIA
 

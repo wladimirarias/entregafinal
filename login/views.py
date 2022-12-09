@@ -10,6 +10,9 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.hashers import make_password, check_password
 
+#Protección por sesiones
+from django.contrib.auth.decorators import login_required
+
 # Función para Inicio de Sesión
 def iniciar_sesion(request):
 
@@ -37,6 +40,7 @@ def cerrar_sesion(request):
     logout(request)
     return redirect("auth-login")
 
+@login_required
 def editar_perfil(request):
     usuario = request.user
 
@@ -58,6 +62,7 @@ def editar_perfil(request):
     
     return render(request, "app/editar_perfil.html", {"form": formulario})
 
+@login_required
 def editar_contrasena(request):
     usuario = request.user
 
@@ -77,6 +82,7 @@ def editar_contrasena(request):
     
     return render(request, "app/editar_perfil_contrasena.html", {"form": formulario})
 
+@login_required
 def agregar_avatar(request):
 
     if request.method == 'POST':

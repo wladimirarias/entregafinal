@@ -10,6 +10,10 @@ from app.forms import TrabajadorFormulario
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 
+#Protección por sesiones
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def inicio(request):
 
     if request.user.is_authenticated:
@@ -24,6 +28,7 @@ def inicio(request):
     
     return render(request, "app/index.html", {"imagen_url": imagen_url})
 
+@login_required
 def lista_trabajadores(request):
 
     errores = ""
@@ -33,6 +38,7 @@ def lista_trabajadores(request):
 
     return render(request, "app/trabajadores.html", contexto)
 
+@login_required
 def agregar_trabajador(request):
     
     if request.method == "POST":
@@ -51,6 +57,7 @@ def agregar_trabajador(request):
 
     return render(request, "app/agregar_trabajador.html", {"form": formulario})
 
+@login_required
 def editar_trabajador(request, id):
     trabajador = Trabajadores.objects.get(id=id)
 
@@ -75,6 +82,7 @@ def editar_trabajador(request, id):
         formulario = TrabajadorFormulario(initial={"run":trabajador.run, "nombre":trabajador.nombre,"apellido":trabajador.apellido,"edad":trabajador.edad,"email":trabajador.email,"cargo":trabajador.cargo,"imagen_cargo":""})
         return render(request, "app/editar_trabajador.html", {"formulario":formulario, "errores":""})
 
+@login_required
 def confirmar_eliminar_trabajador(request, id):
     trabajador_model = Trabajadores.objects.filter(id=id).order_by("-id")
 
@@ -85,14 +93,16 @@ def confirmar_eliminar_trabajador(request, id):
     
     return render(request, "app/confirm_eliminar_trabajador.html", {"trabajador": trabajador})
 
+@login_required
 def eliminar_trabajador(request, id):
     trabajador = Trabajadores.objects.get(id=id)
     trabajador.delete()
 
     return redirect("app-list-trabajadores")
 
+@login_required
 def detalle_trabajador(request, id):
-    trabajador_model = Trabajadores.objects.filter(id=id)
+    trabajador_model = Trabajadores.objects.filter(id=id).select_related("user")
 
     if len(trabajador_model) > 0:
         trabajador = trabajador_model[0]
@@ -111,3 +121,14 @@ def detalle_trabajador(request, id):
     #return render(request, "app/index.html", {"imagen_url": imagen_url})
     
     return render(request, "app/detalle_trabajador.html", {"trabajador": trabajador, "imagen_url": imagen_url})
+
+@login_required
+def buscar_trabajador(request):
+    return render(request, "app/busqueda_trabajadores.html")
+
+@login_required
+def resultados_busqueda_trabajadores(request):
+    nombre_trabajador = request.GET["nombre_trabajador"]
+
+    trabajadores = Trabajadores.objects.filter(nombre__icontains=nombre_trabajador)
+    return render(request, "app/resultados_busqueda_trabajadores.html", {"trabajadores": trabajadores})

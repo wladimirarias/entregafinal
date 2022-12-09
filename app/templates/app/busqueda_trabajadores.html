@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %} {% block contenido %} {% if errors %}
+<p style="color: red;"> {{ errors }}</p>
+{% endif %}
+<form action="{% url 'app-buscar-trabajador-resultados' %}" method="get">
+
+    <p>
+        Nombre del Trabajador: <input type="text" name="nombre_trabajador">
+        <input type="submit" value="Buscar Trabajador">
+    </p>
+
+</form>
+
+{% endblock %}

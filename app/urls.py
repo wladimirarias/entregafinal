@@ -15,5 +15,7 @@ urlpatterns = [
     path("editar_trabajador/<id>", editar_trabajador, name="app-editar-trabajador"),
     path("confirm_eliminar_trabajador/<id>", confirmar_eliminar_trabajador, name="app-confirm-eliminar-trabajador"),
     path("eliminar_trabajador/<id>", eliminar_trabajador, name="app-eliminar-trabajador"),
-    path("detalle_trabajador/<id>", detalle_trabajador, name="app-detalle-trabajador")
+    path("detalle_trabajador/<id>", detalle_trabajador, name="app-detalle-trabajador"),
+    path("busqueda_trabajador/", buscar_trabajador, name="app-buscar-trabajador"),
+    path("busqueda_trabajador/resultados/", resultados_busqueda_trabajadores, name="app-buscar-trabajador-resultados")
 ]
