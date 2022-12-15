@@ -10,3 +10,6 @@ class TrabajadorFormulario(forms.Form):
     email = forms.EmailField()
     cargo = forms.CharField()
     imagen_cargo = forms.ImageField()
+
+class MensajeFormulario(forms.Form):
+    texto_mensaje = forms.CharField(label="Mensaje")

@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from login.models import Avatar
-from app.models import Trabajadores, Empresa, Obra
-from app.forms import TrabajadorFormulario
+from app.models import Trabajadores, Empresa, Obra, Mensajes
+from app.forms import TrabajadorFormulario, MensajeFormulario
 
-#Import vistas basadas en clases para eliminar y mostrar detalle
+#Import de Fecha actual
+from datetime import datetime
 
 #Login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -28,6 +29,9 @@ def inicio(request):
     
     return render(request, "app/index.html", {"imagen_url": imagen_url})
 
+def about(request):
+    return render(request, "app/about.html")
+
 @login_required
 def lista_trabajadores(request):
 
@@ -40,6 +44,7 @@ def lista_trabajadores(request):
 
 @login_required
 def agregar_trabajador(request):
+    now = datetime.now()
     
     if request.method == "POST":
         formulario = TrabajadorFormulario(request.POST, request.FILES)
@@ -47,7 +52,7 @@ def agregar_trabajador(request):
         if formulario.is_valid():
             data = formulario.cleaned_data
             usuario = request.user
-            trabajador = Trabajadores(run=data["run"], nombre=data["nombre"], apellido=data["apellido"], edad=data["edad"], cargo=data["cargo"], email=data["email"], imagen_cargo=data["imagen_cargo"], user=usuario)
+            trabajador = Trabajadores(run=data["run"], nombre=data["nombre"], apellido=data["apellido"], edad=data["edad"], cargo=data["cargo"], email=data["email"], imagen_cargo=data["imagen_cargo"], fecha_ingreso=now ,user=usuario)
             trabajador.save()
             return redirect("app-inicio")
         else:
@@ -132,3 +137,32 @@ def resultados_busqueda_trabajadores(request):
 
     trabajadores = Trabajadores.objects.filter(nombre__icontains=nombre_trabajador)
     return render(request, "app/resultados_busqueda_trabajadores.html", {"trabajadores": trabajadores})
+
+def mensajeria(request):
+    now = datetime.now()
+
+    if request.method == 'POST':
+        formulario = MensajeFormulario(request.POST)
+
+        if formulario.is_valid():
+
+            data = formulario.cleaned_data
+            usuario = request.user
+            mensaje = Mensajes(texto_mensaje=data["texto_mensaje"], fecha_ingreso=now, user=usuario)
+            mensaje.save()
+            return redirect("app-mensajeria")
+        else:
+            return render(request, "app/agregar_mensaje.html", {"form": formulario, "errors":formulario.errors})
+    
+    formulario = MensajeFormulario()
+
+    return render(request, "app/agregar_mensaje.html", {"form": formulario})
+
+def listado_mensajeria(request):
+    
+    errores = ""
+
+    mensajes = Mensajes.objects.all().order_by("fecha_ingreso")
+    contexto = {"listado_mensajes": mensajes, "errores": errores}
+
+    return render(request, "app/listado_mensajes.html", contexto)

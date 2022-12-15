@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %} {% block contenido %}
+
+<h1>Mensajería del Sitio</h1>
+
+<hr style="color: #0056b2;" /> {% if errores %}
+<p style="color: red;">{{ errores }}</p>
+
+{% endif %} {% if listado_mensajes %} {% for mensaje in listado_mensajes %}
+
+<p>{{mensaje.fecha_ingreso|date:"d-m-Y"}} | {{ mensaje.user|title}}: {{ mensaje.texto_mensaje }}</p>
+
+
+<hr style="color: #0056b2;" /> {% endfor %} {% else %}
+<p>No hay trabajadores ingresados en el sistema</p>
+{% endif %} {% endblock %}

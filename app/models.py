@@ -10,9 +10,10 @@ class Trabajadores(models.Model):
     cargo = models.CharField(max_length=100)
     imagen_cargo = models.ImageField(upload_to="trabajadores", null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fecha_ingreso = models.DateField()
 
     def __str__(self):
-        return f"Run Trabajador: {self.run} | Nombre Trabajador: {self.nombre.capitalize()} | Apellido Trabajador: {self.apellido.capitalize()} | Edad Trabajador: {self.edad} | Email Trabajador: {self.email.capitalize()} | Cargo Trabajador: {self.cargo.capitalize()} | URL Imagen: {self.imagen_cargo} | Usuario Registro: {self.user}"
+        return f"Run Trabajador: {self.run} | Nombre Trabajador: {self.nombre.capitalize()} | Apellido Trabajador: {self.apellido.capitalize()} | Edad Trabajador: {self.edad} | Email Trabajador: {self.email.capitalize()} | Cargo Trabajador: {self.cargo.capitalize()} | URL Imagen: {self.imagen_cargo} | Usuario Registro: {self.user} | Fecha Ingreso: {self.fecha_ingreso}"
 
 class Empresa(models.Model):
     run = models.IntegerField()
@@ -31,3 +32,8 @@ class Obra(models.Model):
 
     def __str__(self):
         return f"Nombre Obra: {self.nombre.capitalize()} | Dirección Obra: {self.direccion.capitalize()} | Email Obra: {self.email.capitalize()} | Fono Obra: {self.fono}"
+
+class Mensajes(models.Model):
+    texto_mensaje = models.CharField(max_length=1000)
+    fecha_ingreso = models.DateField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

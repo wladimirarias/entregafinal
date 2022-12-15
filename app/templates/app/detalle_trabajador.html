@@ -35,7 +35,13 @@
     </tr>
     <tr>
         <td>
-            Creador Por: {{ trabajador.user }}
+            Creador Por: {{ trabajador.user|title }}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Fecha Ingreso en Sistema: {{ trabajador.fecha_ingreso|date:"d-m-Y" }}
         </td>
     </tr>
 

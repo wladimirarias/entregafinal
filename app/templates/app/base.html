@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Trabajadores</a>
+                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Trabajadores</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'app-agregar-trabajador' %}">Agregar Trabajador</a></li>
                             <li>
@@ -35,8 +35,8 @@
                             <li><a class="dropdown-item" href="{% url 'app-buscar-trabajador' %}">Buscar Trabajadores</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Obras</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'app-mensajeria' %}">Mensajería</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'auth-about' %}">Acerca de Nosotros</a></li>
 
                 </ul>
 
