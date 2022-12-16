@@ -4,8 +4,18 @@
 
 <hr style="color: #0056b2;" /> {% if errores %}
 <p style="color: red;">{{ errores }}</p>
+{% endif %}
 
-{% endif %} {% if listado_mensajes %} {% for mensaje in listado_mensajes %}
+<form method="post">
+
+    {% csrf_token %} {{ formulario.as_p }}
+    <input type="submit" value="Publicar">
+
+</form>
+
+<hr style="color: #FFFFFF;" />
+
+<hr style="color: #0056b2;" />{% if listado_mensajes %} {% for mensaje in listado_mensajes %}
 
 <p>{{mensaje.fecha_ingreso|date:"d-m-Y"}} | {{ mensaje.user|title}}: {{ mensaje.texto_mensaje }}</p>
 

@@ -19,7 +19,6 @@ urlpatterns = [
     path("detalle_trabajador/<id>", detalle_trabajador, name="app-detalle-trabajador"),
     path("busqueda_trabajador/", buscar_trabajador, name="app-buscar-trabajador"),
     path("busqueda_trabajador/resultados/", resultados_busqueda_trabajadores, name="app-buscar-trabajador-resultados"),
-
-    path("listado_mensajes/", listado_mensajeria, name="app-mensajeria"),
-    path("mensajeria/", mensajeria, name="app-agregar_mensaje")
+    
+    path("mensajeria/", mensajeria, name="app-mensajeria")
 ]

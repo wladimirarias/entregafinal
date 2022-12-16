@@ -138,31 +138,25 @@ def resultados_busqueda_trabajadores(request):
     trabajadores = Trabajadores.objects.filter(nombre__icontains=nombre_trabajador)
     return render(request, "app/resultados_busqueda_trabajadores.html", {"trabajadores": trabajadores})
 
+@login_required
 def mensajeria(request):
+    errores = ""
     now = datetime.now()
 
     if request.method == 'POST':
         formulario = MensajeFormulario(request.POST)
 
         if formulario.is_valid():
-
             data = formulario.cleaned_data
             usuario = request.user
             mensaje = Mensajes(texto_mensaje=data["texto_mensaje"], fecha_ingreso=now, user=usuario)
             mensaje.save()
-            return redirect("app-mensajeria")
         else:
-            return render(request, "app/agregar_mensaje.html", {"form": formulario, "errors":formulario.errors})
-    
+            errores = formulario.errors
+
+    mensajes = Mensajes.objects.all().order_by("-id")
     formulario = MensajeFormulario()
 
-    return render(request, "app/agregar_mensaje.html", {"form": formulario})
-
-def listado_mensajeria(request):
-    
-    errores = ""
-
-    mensajes = Mensajes.objects.all().order_by("fecha_ingreso")
-    contexto = {"listado_mensajes": mensajes, "errores": errores}
+    contexto = {"listado_mensajes": mensajes, "formulario": formulario ,"errores": errores}
 
     return render(request, "app/listado_mensajes.html", contexto)
