@@ -1,5 +1,5 @@
 {% extends 'app/base.html' %} {% block contenido %}
 
-<h1>Bienvenido/a</h1>
+<h1>Bienvenido/a {{ request.user.first_name.capitalize }} {{ request.user.last_name.capitalize }}</h1>
 
 {% endblock %}
