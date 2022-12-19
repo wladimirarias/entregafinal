@@ -11,7 +11,7 @@ class TrabajadorFormulario(forms.Form):
     edad = forms.IntegerField()
     email = forms.EmailField()
     cargo = forms.CharField()
-    imagen_cargo = forms.ImageField()
+    imagen_cargo = forms.ImageField(required=False)
 
 class MensajeFormulario(forms.Form):
     texto_mensaje = forms.CharField(label="Mensaje")

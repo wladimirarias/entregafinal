@@ -6,7 +6,7 @@ Carlos Mateluna: CRUD completo de trabajadores, captura de datos de inicio de se
 
 La aplicación de mensajería fue realizada en conjunto.
 
-
+En editar trabajador, se encuentra disponible el botón de actualización de la imagen sólo con el perfil de administrador
 
 Usuario admin: administrador
 Email admin: warias@fundacioncchc.cl

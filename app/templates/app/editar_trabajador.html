@@ -3,7 +3,18 @@
 {% endif %}
 <form method="post" enctype="multipart/form-data">
 
-    {% csrf_token %} {{ formulario.as_p }}
+    {% csrf_token %}
+
+    <p>Run: {{ formulario.run }}</p>
+    <p>Nombre: {{ formulario.nombre }}</p>
+    <p>Apellido: {{ formulario.apellido }}</p>
+    <p>Edad: {{ formulario.edad }}</p>
+    <p>Email: {{ formulario.email }}</p>
+    <p>Cargo: {{ formulario.cargo }}</p>
+    {% if user.is_staff %}
+    <p>Imagen Cargo: {{ formulario.imagen_cargo }}</p>
+    {% endif %}
+
     <input type="submit" value="Guardar">
 
 </form>

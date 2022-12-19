@@ -33,11 +33,12 @@ def about(request):
     return render(request, "app/about.html")
 
 @login_required
-def lista_trabajadores(request):
+def lista_trabajadores(request, id=None):
 
     errores = ""
 
     trabajadores = Trabajadores.objects.all().order_by("nombre")
+
     contexto = {"listado_trabajadores": trabajadores, "errores": errores}
 
     return render(request, "app/trabajadores.html", contexto)
@@ -117,15 +118,14 @@ def detalle_trabajador(request, id):
 
     imagen_model = Trabajadores.objects.filter(id=id)
 
-    if len(imagen_model) > 0:
-        imagen_url = imagen_model[0].imagen_cargo.url
+    if trabajador.imagen_cargo != "":
+        imagen_url_trabajador = imagen_model[0].imagen_cargo.url
     else:
-        imagen_url = ""
-
+        imagen_url_trabajador = ""
     
     #return render(request, "app/index.html", {"imagen_url": imagen_url})
     
-    return render(request, "app/detalle_trabajador.html", {"trabajador": trabajador, "imagen_url": imagen_url})
+    return render(request, "app/detalle_trabajador.html", {"trabajador": trabajador, "imagen_url_trabajador": imagen_url_trabajador})
 
 @login_required
 def buscar_trabajador(request):
